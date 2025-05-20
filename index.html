@@ -9,7 +9,7 @@
     body {
       margin: 0;
       padding: 0;
-      font-family:  Arial, sans-serif;
+      font-family: 'VT323', monospace;
       background: url('background.png') no-repeat center center fixed;
       background-size: cover;
       display: flex;
@@ -18,25 +18,21 @@
       height: 100vh;
       color: #3c1551;
     }
-
     .container {
       text-align: center;
       background: rgba(255, 255, 255, 0.1);
       padding: 40px;
       border-radius: 20px;
     }
-
     h1 {
       font-size: 3rem;
       margin-bottom: 10px;
     }
-
     .label {
       font-size: 1.4rem;
       margin-top: 20px;
       display: block;
     }
-
     input {
       padding: 10px 15px;
       margin: 10px 0;
@@ -46,7 +42,6 @@
       background-color: #f2d5ff;
       font-size: 1.2rem;
     }
-
     button {
       display: block;
       margin: 10px auto;
@@ -57,7 +52,6 @@
       border-radius: 12px;
       cursor: pointer;
     }
-
     button:hover {
       background-color: #e6c4f2;
     }
@@ -67,12 +61,33 @@
   <div class="container">
     <h1>wallpapers</h1>
     <label class="label">create account</label>
-    <input type="email" placeholder="Email" />
+    <input id="email" type="email" placeholder="Email" />
     <br />
-    <input type="password" placeholder="password" />
+    <input id="password" type="password" placeholder="Password" />
     <br />
-    <button>log in</button>
-    <button>sign up</button>
+    <button id="loginBtn">log in</button>
+    <button id="signupBtn">sign up</button>
   </div>
+
+  <script>
+    // Load saved email when page loads
+    window.onload = function() {
+      const savedEmail = localStorage.getItem('userEmail');
+      if (savedEmail) {
+        document.getElementById('email').value = savedEmail;
+      }
+    };
+
+    // Save email on login
+    document.getElementById('loginBtn').addEventListener('click', function() {
+      const email = document.getElementById('email').value;
+      if (email) {
+        localStorage.setItem('userEmail', email);
+        alert("Email saved. Welcome back!");
+      } else {
+        alert("Please enter your email.");
+      }
+    });
+  </script>
 </body>
 </html>
