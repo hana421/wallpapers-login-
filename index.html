@@ -55,53 +55,27 @@
     button:hover {
       background-color: #e6c4f2;
     }
-    #successMessage {
-      font-size: 1.5rem;
-      margin-top: 20px;
-    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>wallpapers</h1>
-    <label class="label">Log in to download</label>
-    <input id="email" type="text" placeholder="Username" />
+    <label class="label">Log in to continue</label>
+    <input id="username" type="text" placeholder="Username" />
     <br />
     <input id="password" type="password" placeholder="Password" />
     <br />
     <button id="loginBtn">log in</button>
-    <p id="successMessage" style="display: none;">Login successful! Your download will begin shortly...</p>
   </div>
 
   <script>
-    window.onload = function () {
-      const savedEmail = localStorage.getItem('userEmail');
-      if (savedEmail) {
-        document.getElementById('email').value = savedEmail;
-      }
-    };
-
     document.getElementById('loginBtn').addEventListener('click', function () {
-      const username = document.getElementById('email').value;
+      const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
 
       if (username === "admin" && password === "1234") {
-        // Save username
-        localStorage.setItem('userEmail', username);
-
-        // Show success message
-        const message = document.getElementById('successMessage');
-        message.style.display = 'block';
-
-        // Start download after slight delay
-        setTimeout(() => {
-          const link = document.createElement('a');
-          link.href = 'autohtml.zip';
-          link.download = 'autohtml.zip';
-          document.body.appendChild(link);
-          link.click();
-          document.body.removeChild(link);
-        }, 1000);
+        // Redirect to home.html if login is successful
+        window.location.href = "home.html";
       } else {
         alert("Incorrect username or password.");
       }
