@@ -2,21 +2,15 @@
  <!DOCTYPE html>
 <html>
 <head>
-  <title>Welcome</title>
-</head>
-<body>
-  <h2>Login successful! Your download will start automatically...</h2>
-
+  <title>Redirecting...</title>
   <script>
-    // Automatically download the ZIP file on page load
     window.onload = function () {
-      const link = document.createElement('a');
-      link.href = 'autohtml.zip';
-      link.download = 'autohtml.zip';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Automatically redirect to the new page
+      window.location.href = "page2.html";
     };
   </script>
+</head>
+<body>
+  <p>Redirecting to the next page...</p>
 </body>
 </html>
