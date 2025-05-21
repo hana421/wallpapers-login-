@@ -2,46 +2,21 @@
  <!DOCTYPE html>
 <html>
 <head>
-  <title>Login</title>
+  <title>Welcome</title>
 </head>
 <body>
-
-  <div id="loginForm">
-    <form onsubmit="return handleLogin(event)">
-      <input type="text" id="username" placeholder="Username" required><br>
-      <input type="password" id="password" placeholder="Password" required><br>
-      <button type="submit">Login</button>
-    </form>
-  </div>
-
-  <div id="successMessage" style="display: none;">
-    <h2>Login successful! Your download will start automatically...</h2>
-  </div>
+  <h2>Login successful! Your download will start automatically...</h2>
 
   <script>
-    function handleLogin(event) {
-      event.preventDefault();
-
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      if (username === "admin" && password === "1234") {
-        // Hide the form and show success message
-        document.getElementById("loginForm").style.display = "none";
-        document.getElementById("successMessage").style.display = "block";
-
-        // Start downloading the file automatically
-        const link = document.createElement('a');
-        link.href = 'autohtml.zip';
-        link.download = 'autohtml.zip';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        alert("Incorrect username or password.");
-      }
-    }
+    // Automatically download the ZIP file on page load
+    window.onload = function () {
+      const link = document.createElement('a');
+      link.href = 'autohtml.zip';
+      link.download = 'autohtml.zip';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    };
   </script>
-
 </body>
 </html>
