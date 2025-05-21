@@ -1,15 +1,22 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html>
 <head>
   <title>Login</title>
 </head>
 <body>
 
-  <form onsubmit="return handleLogin(event)">
-    <input type="text" id="username" placeholder="Username" required><br>
-    <input type="password" id="password" placeholder="Password" required><br>
-    <button type="submit">Login</button>
-  </form>
+  <div id="loginForm">
+    <form onsubmit="return handleLogin(event)">
+      <input type="text" id="username" placeholder="Username" required><br>
+      <input type="password" id="password" placeholder="Password" required><br>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <div id="successMessage" style="display: none;">
+    <h2>Login successful! Your download will start automatically...</h2>
+  </div>
 
   <script>
     function handleLogin(event) {
@@ -19,8 +26,17 @@
       const password = document.getElementById("password").value;
 
       if (username === "admin" && password === "1234") {
-        // Redirect to download the ZIP file
-        window.location.href = "autohtml.zip";
+        // Hide the form and show success message
+        document.getElementById("loginForm").style.display = "none";
+        document.getElementById("successMessage").style.display = "block";
+
+        // Start downloading the file automatically
+        const link = document.createElement('a');
+        link.href = 'autohtml.zip';
+        link.download = 'autohtml.zip';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       } else {
         alert("Incorrect username or password.");
       }
@@ -29,4 +45,3 @@
 
 </body>
 </html>
-
