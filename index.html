@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wallpapers - Login</title>
+  <title>Login - Wallpapers</title>
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
     body {
@@ -23,15 +23,16 @@
       background: rgba(255, 255, 255, 0.1);
       padding: 40px;
       border-radius: 20px;
+      backdrop-filter: blur(6px);
     }
     h1 {
       font-size: 3rem;
       margin-bottom: 10px;
     }
-    .label {
+    label {
       font-size: 1.4rem;
-      margin-top: 20px;
       display: block;
+      margin: 10px 0 5px;
     }
     input {
       padding: 10px 15px;
@@ -44,7 +45,7 @@
     }
     button {
       display: block;
-      margin: 10px auto;
+      margin: 20px auto 0;
       padding: 10px 20px;
       font-size: 1.3rem;
       background-color: #f2d5ff;
@@ -59,22 +60,22 @@
 </head>
 <body>
   <div class="container">
-    <h1>wallpapers</h1>
-    <label class="label">Log in to continue</label>
-    <input id="username" type="text" placeholder="Username" />
-    <br />
-    <input id="password" type="password" placeholder="Password" />
-    <br />
-    <button id="loginBtn">log in</button>
+    <h1>Wallpapers</h1>
+    <label for="username">Username</label>
+    <input id="username" type="text" placeholder="Enter username" />
+    
+    <label for="password">Password</label>
+    <input id="password" type="password" placeholder="Enter password" />
+    
+    <button id="loginBtn">Log In</button>
   </div>
 
   <script>
     document.getElementById('loginBtn').addEventListener('click', function () {
-      const username = document.getElementById('username').value;
-      const password = document.getElementById('password').value;
+      const username = document.getElementById('username').value.trim().toLowerCase();
+      const password = document.getElementById('password').value.trim();
 
       if (username === "admin" && password === "1234") {
-        // Redirect to home.html if login is successful
         window.location.href = "home.html";
       } else {
         alert("Incorrect username or password.");
